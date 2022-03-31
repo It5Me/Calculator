@@ -13,9 +13,11 @@
             }
         }
         xmlhttp.send(null);
+     
     }
     var temp = ''
     var inp = ''
+    
     function setValue(value) {
         if (value === 'clear') {
             temp = ''
@@ -23,7 +25,9 @@
             document.getElementById("input").innerHTML = temp
             return 
         }
-  
+        else if (value === '=') {
+            makerequest('/Home/Caculator?numberinp=' + temp, 'input'); return false;
+        }
         else {
             if (value === "+") {
                 temp += value
@@ -103,7 +107,7 @@
             <button class="btn-primary" onclick="setValue('.')">
                 .
             </button>
-            <button class="btn-primary" onclick="makerequest('/Home/Caculator?numberinp='+temp, 'input'); return false;">
+            <button class="btn-primary" onclick="setValue('=')">
                 =
             </button>
             <button class="btn-primary" onclick="setValue('/')">

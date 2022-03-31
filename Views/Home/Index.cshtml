@@ -1,0 +1,117 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+<script>
+    
+    var xmlhttp = new XMLHttpRequest();
+    function makerequest(serverPage, objID) {
+        var obj = document.getElementById(objID);
+        xmlhttp.open("GET", serverPage);
+        xmlhttp.onreadystatechange = function () {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                obj.innerHTML = xmlhttp.responseText;
+            }
+        }
+        xmlhttp.send(null);
+    }
+    var temp = ''
+    var inp = ''
+    function setValue(value) {
+        if (value === 'clear') {
+            temp = ''
+            inp = ''
+            document.getElementById("input").innerHTML = temp
+            return 
+        }
+  
+        else {
+            if (value === "+") {
+                temp += value
+                temp += "%2B";
+                inp = ''
+                document.getElementById("input").innerHTML = value
+            }
+            else if (value === "-" || value === "*" || value === "/") {
+                temp += value
+                inp=''
+                document.getElementById("input").innerHTML = value
+               
+            }
+            else {
+                temp += value;
+                inp += value
+                document.getElementById("input").innerHTML = inp
+                console.log(temp)
+            }
+          
+        }
+      
+    }
+</script>
+<div class="layout">
+    <h1 class="display-4">Calculator</h1>
+<div class="content">
+    <fieldset>
+        <legend>Calculator</legend>
+            <div id="input" style=" border: 1px solid; padding: 15px;margin-bottom:10px"></div>
+        <div>
+            <button class="btn-primary" onclick="setValue('1')">
+                1
+            </button>
+            <button class="btn-primary" onclick="setValue('2')">
+                2
+            </button>
+            <button class="btn-primary" onclick="setValue('3')">
+                3
+            </button>
+            <button class="btn-primary" onclick="setValue('+')">
+                +
+            </button>
+        </div>
+        <div>
+            <button class="btn-primary" onclick="setValue('4')">
+                4
+            </button>
+            <button class="btn-primary" onclick="setValue('5')">
+                5
+            </button>
+            <button class="btn-primary" onclick="setValue('6')">
+                6
+            </button>
+            <button class="btn-primary" onclick="setValue('-')">
+                -
+            </button>
+        </div>
+        <div>
+            <button class="btn-primary" onclick="setValue('7')">
+                7
+            </button>
+            <button class="btn-primary" onclick="setValue('8')">
+                8
+            </button>
+            <button class="btn-primary" onclick="setValue('9')">
+                9
+            </button>
+            <button class="btn-primary" onclick="setValue('*')">
+                *
+            </button>
+        </div>
+        <div>
+            <button class="btn-primary" onclick="setValue('0')">
+                0
+            </button>
+            <button class="btn-primary" onclick="setValue('.')">
+                .
+            </button>
+            <button class="btn-primary" onclick="makerequest('/Home/Caculator?numberinp='+temp, 'input'); return false;">
+                =
+            </button>
+            <button class="btn-primary" onclick="setValue('/')">
+                /
+            </button>
+        </div>
+        <button class="btn-clear" style="color:red; " onclick="setValue('clear')" >CLEAR</button>
+    </fieldset>
+</div>
+</div>
+

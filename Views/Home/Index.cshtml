@@ -10,14 +10,14 @@
         xmlhttp.onreadystatechange = function () {
             if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
                 obj.innerHTML = xmlhttp.responseText;
+                temp = obj.innerHTML
+                inp = obj.innerHTML
             }
         }
         xmlhttp.send(null);
-     
     }
     var temp = ''
     var inp = ''
-    
     function setValue(value) {
         if (value === 'clear') {
             temp = ''

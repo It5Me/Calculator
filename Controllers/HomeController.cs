@@ -16,10 +16,11 @@ namespace Calculator_62010634.Controllers
         [Produces("text/html")]
         public IActionResult Caculator(string numberinp)
         {
+            CalculatorModel result = new CalculatorModel();
             string request = numberinp;
             string value = new DataTable().Compute(request, null).ToString();
-            string msg = value;
-            return Content(msg, "text/html", Encoding.UTF8);
+            result.ResultCalculator = value;
+            return Content(result.ResultCalculator, "text/html", Encoding.UTF8);
         }  
         public IActionResult Index()
         {
